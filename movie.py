@@ -75,6 +75,7 @@ def create_movie_database(quantity):
                 season= "{0:02d}".format(random.randint (1, 5)),
             )
         database.append(movie)
+    return  database
 
 
 def get_movies():
@@ -83,6 +84,7 @@ def get_movies():
         if movie.__name__ == 'Movie':
             db_list.append(movie.title)
     sorted_db_list = sorted(db_list)
+    return sorted_db_list
 
 
 def get_series():
@@ -108,32 +110,12 @@ def generate_views(n=10):
         movie.play += random.randint(1, 10)
         views_dict[movie.play] = movie.title
     sorted_views_dict = sorted(views_dict.items() ,  reverse= True)
+    top_3 = {}
     for i in sorted_views_dict:
         if i == 3:
             break
-        print(sorted_views_dict[i])
-
-
-# def generate_views_10():
-#     plays = []
-#     titles = []
-#     views_dict = {}
-#     sorted_views_dict = {}
-#     movies = random.choices(movie_database, k=n)
-#     for j in range(10):
-#         i = random.randrange(len(movie_db))
-#         movie_db[i]._play += random.randrange(100)
-#         plays.append(movie_db[i]._play)
-#         titles.append(movie_db[i].info)
-#     for q in range(len(plays)):
-#         views_dict[plays[q]] = titles[q]
-#     sorted_views_dict = sorted(views_dict.items(), reverse=True)
-#     i = 0
-#     for j in sorted_views_dict:
-#         if i == 3:
-#             break
-#         print(sorted_views_dict[i])
-#         i +=1
+        top_3[movie.play] =movie.title
+    print(top_3)
 
 
 movie_database = create_movie_database(100)
